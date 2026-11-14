@@ -44,8 +44,9 @@ jobs:
       - name: build and push in docker hub
         if: github.event_name == 'push'
         uses: docker/build-push-action@v6
-        context: .
-        push: true
-        tags: |
-          ${{ secrets.DOCKERHUB_USERNAME }}/flask-cicd-project:latest
-          ${{ secrets.DOCKERHUB_USERNAME }}/flask-cicd-project:${{ github.sha }}
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/flask-cicd-project:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/flask-cicd-project:${{ github.sha }}
